@@ -9,11 +9,11 @@ var outer = function(){
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
-  //Code Here
+inner();
 
 
 
@@ -32,9 +32,9 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+var callNow = callFriend();
 
-
+callNow('555-555-5555');
 
 //Next Problem
 
@@ -44,7 +44,13 @@ var callFriend = function(){
   Write a function called makeCounter that makes the following code work properly.
 */
 
-  //Code Here
+  var makeCounter = function() {
+    var counter = 0;
+    return function() {
+      return counter += 1;
+    }
+  }
+
   var count = makeCounter();
   count() // 1
   count() // 2
@@ -62,25 +68,38 @@ var callFriend = function(){
   (which invokes the original function that was passed in) that can only ever be executed once.
 */
 
-  //Code Here
-
-
+var outerFn = function(innerFn) {
+  return function() {
+    innerFn();
+  }
+}
 
 //Next Problem
 
-
-
 /*
-  Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. The first parameter will be an anonymous function and the second parameter, 'N', will be a number. Now, in 'fnCounter', allow the anonymous funciton to be invoked 'N' number of times. After it's been invoked 'N' number of times, return 'STOP'.
+  Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. The first parameter 
+  will be an anonymous function and the second parameter, 'N', will be a number. Now, in 'fnCounter', allow the anonymous 
+  function to be invoked 'N' number of times. After it's been invoked 'N' number of times, return 'STOP'.
 */
+var fnCounter = function(param1, N) {
+  for (var i = 0; i < N; i++) {
+    param1();
+  }
+  return 'STOP';
+}
+
+fnCounter(function(){
+  alert("running");
+}, 3);
 
 
+var param1 = function(name) {
+  alert('running');
+}
 
 //Next Problem
 
 
-
-/*
   var counter = function(){
     for (var i=1; i<=5; i++) {
       setTimeout( function timer(){
@@ -89,24 +108,39 @@ var callFriend = function(){
     }
   };
 
+
+/*
   Above you have a function named counter. Examine the function (without running the code) then below write what you expect to happen when the funciton is invoked. *Hint: setTimeout calls a function or evaluates an expression after a specified number of milliseconds.
 
-    //Answer Here
+    // console.log is going to log 5, five times. This is going to happen because of the callback function; i will complete
+    it's run to 5 before everything is logged.
 
 
   Now, run the function in your console and note what happpens.
 
   Was your answer right or wrong?
 
-    //Answer Here
+    // I was right and wrong. It displayed 6 five times; not 5 five times. Because 6 is what breaks the function parameter
+    of i <= 5.
 
 
   Fix the counter function so that it works the way you expect it to work. (logging 1 then 2 then 3, etc)
 */
+var counter = function() {
+  for (var i = 0; i <=5; i++) {
+    (function(i) {
+      setTimeout( function timer() {
+        console.log(i);
+      }, i * 1000 );
+    })(i);
+  }
+};
 
-    //Code Here
-
-
+function logI() {
+  for(var i = 0; i < 5; i++) {
+    conosole.log(i);
+  }
+}
 
 //Next Problem
 
@@ -125,4 +159,11 @@ var callFriend = function(){
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
 
+var myArray = [0, 1, 2, 3, 4, 5];
 
+var funcArray = function(array) {
+  for (var i = 0; i < array.length; i++)
+    return array[i];
+}
+
+funcArray(myArray);
