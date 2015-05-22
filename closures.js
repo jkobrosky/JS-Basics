@@ -159,11 +159,31 @@ function logI() {
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
 
-var myArray = [0, 1, 2, 3, 4, 5];
+var funcArray = [
+  function() { alert('A long time ago, in a galaxy far, far away...')},
+  function() { alert('It is a period of civil war')},
+  function() { alert('Rebel spaceships, striking from a hidden base, have won')},
+  function() { alert('their first victory against the evil Galactic Empire.')},
+  function() { alert('During the battle, rebel spies managed to steal secret plans')},
+  function() { alert('to the Empire\'s ultimate weapon,')},
+  function() { alert('the DEATH STAR, an armoured space station with enough')},
+  function() { alert('power to destroy an entire planet.')},
+];
 
-var funcArray = function(array) {
-  for (var i = 0; i < array.length; i++)
-    return array[i];
-}
+for (var i = 0; i < funcArray.length; i++) {
+  funcArray[i]();
+};
 
-funcArray(myArray);
+
+
+
+
+
+
+
+
+
+
+
+
+
